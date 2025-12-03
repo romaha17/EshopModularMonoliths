@@ -25,7 +25,7 @@ namespace Basket.Basket.Modules
         }
 
         [JsonConstructor]
-        internal ShoppingCartItem(Guid id, Guid shoppingCartId, Guid productId, int quantity, string color, decimal price, string productName)
+        public ShoppingCartItem(Guid id, Guid shoppingCartId, Guid productId, int quantity, string color, decimal price, string productName)
         {
             Id = id;
             ShoppingCartId = shoppingCartId;
@@ -36,5 +36,10 @@ namespace Basket.Basket.Modules
             ProductName = productName;
         }
 
+        public void UpdatePrice(decimal newPrice)
+        {
+            ArgumentOutOfRangeException.ThrowIfNegativeOrZero(newPrice);
+            Price = newPrice;
+        }
     }
 }
